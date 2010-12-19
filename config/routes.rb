@@ -1,26 +1,4 @@
 Synclive::Application.routes.draw do
-  resources :users
-
-  resource :session, :only => [:new, :create, :destroy]
-
-  match 'signup' => 'users#new', :as => :signup
-
-  match 'register' => 'users#create', :as => :register
-
-  match 'login' => 'sessions#new', :as => :login
-
-  match 'logout' => 'sessions#destroy', :as => :logout
-
-  match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-
-  get "contacts/index"
-
-  get "contacts/upload"
-
-  get "contacts/download"
-
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
