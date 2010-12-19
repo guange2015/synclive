@@ -1,4 +1,4 @@
-#encoding=gbk
+#encoding=utf-8
 require 'logger'
 class StreamUtil	
 	class ObjType
@@ -18,8 +18,8 @@ class StreamUtil
 		POINT = 13
 	end
 	
-	def initialize(file_name)
-		@io = File.open(file_name, "rb")
+	def initialize(io)
+		@io = io
 		@log = Logger.new(STDOUT)
 		@log.formatter = proc { |severity, datetime, progname, msg|
     					"#{datetime}: #{msg}\n"
@@ -44,10 +44,34 @@ class StreamUtil
 		@io.read num
 	end
 	
+	def write_byte(byte)
+		@io.write [byte].pack("c")
+	end
+	
+	def write_int16(num)
+		@io.write [num].pack('n')
+	end
+	def write_int32(num)
+		@io.write [num].pack('N')
+	end
+	def write_int64(num)
+		@io.write [num].pack('Q')
+	end
+	
+	def write_bytes(nums)
+		@io.write nums.pack('c'*nums.size)
+	end
+	
+	def write_utf(s)
+	  len = s.bytesize
+    write_int16 len
+	  write_bytes s.bytes.to_a
+	end
+	
 	def read_utf
 		len = read_int16
 		s = read_bytes(len)
-		s = s.encode('GBK','UTF-8')
+		#s = s.encode('GBK','UTF-8')
 		return s
 	end
 	
@@ -63,6 +87,15 @@ class StreamUtil
 		end
 		
 	end
+	
+	def write_array(a,type)
+	  len = a.size
+	  write_int32 len
+	  
+	  len.times do |i|
+	    self.send("write_"+type, a[i])
+    end
+  end
 	
 	def read_from_stream()		
 		c = read_byte
@@ -89,6 +122,7 @@ class StreamUtil
 			obj << read_from_stream
 		when ObjType::HASHTABLE
 			len = read_int32
+			@log.debug("obj hash len = "+len.to_s)
 			obj = {}
 			len.times do
 				key = read_from_stream
@@ -98,7 +132,11 @@ class StreamUtil
 			return obj
 		when ObjType::OBJECTARRAY
 			obj = []
-			obj << read_from_stream
+			len =  read_int32
+			@log.debug("obj array len = "+len.to_s)
+			len.times do
+			  obj << read_from_stream
+		  end
 			return obj
 		when ObjType::BOOLEAN
 			return read_int32
@@ -111,11 +149,42 @@ class StreamUtil
 		end
 	end
 	
-	def write_to_stream
+	def write_to_stream(obj)		
+		if obj.nil?		
+		  write_byte ObjType::NULL
+		elsif obj.kind_of? Fixnum
+		  write_byte ObjType::INT
+		  write_int32 obj
+	  elsif obj.kind_of? String
+		  write_byte ObjType::STRING
+			write_utf obj
+		elsif obj.kind_of? Array
+		  write_byte ObjType::OBJECTARRAY
+			len =  obj.size
+			write_int32 len
+			len.times do |i|
+			  write_to_stream obj[i]
+		  end
+		elsif obj.kind_of? Hash
+		  write_byte ObjType::HASHTABLE
+			len = obj.length
+			write_int32 len
+			obj.each do |key,value|
+				write_to_stream key.to_s
+				write_to_stream value
+			end
+		else
+			print "unknow type =" + obj.inspect
+		end
 	end
 	
 end
 
-obj = StreamUtil.new("d:\\S60\\devices\\S60_3rd_FP2_SDK\\epoc32\\winscw\\c\\res\\PACKAGE_INF\\APP.INF").read_from_stream()
-
-puts obj.inspect
+if _DEBUG
+  o = [{:name => "222", :fuck => 111 },
+      {:name => "1111", :fuck => 333 }]
+  in_o = StreamUtil.new("/tmp/APP.INF")
+  #in_o.write_to_stream (o)
+  obj = in_o.read_from_stream
+  puts obj.inspect
+end
