@@ -1,5 +1,6 @@
 Synclive::Application.routes.draw do
-  get "mobile_interface/do_post"
+  post "mobile_interface/do_post"
+  get  "mobile_interface/do_get"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,5 @@
 #encoding=utf-8
-require 'logger'
+
 class StreamUtil	
 	class ObjType
 		NULL = 0
@@ -20,10 +20,6 @@ class StreamUtil
 	
 	def initialize(io)
 		@io = io
-		@log = Logger.new(STDOUT)
-		@log.formatter = proc { |severity, datetime, progname, msg|
-    					"#{datetime}: #{msg}\n"
- 						 }
 	end
 	
 	def read_byte
@@ -71,7 +67,7 @@ class StreamUtil
 	def read_utf
 		len = read_int16
 		s = read_bytes(len)
-		#s = s.encode('GBK','UTF-8')
+		s = s.encode('GBK','UTF-8')
 		return s
 	end
 	
@@ -99,7 +95,7 @@ class StreamUtil
 	
 	def read_from_stream()		
 		c = read_byte
-		@log.debug("read byte = "+c.to_s)
+    puts "c = "+c.to_s
 		case c
 		when ObjType::NULL			
 			return nil
@@ -122,7 +118,6 @@ class StreamUtil
 			obj << read_from_stream
 		when ObjType::HASHTABLE
 			len = read_int32
-			@log.debug("obj hash len = "+len.to_s)
 			obj = {}
 			len.times do
 				key = read_from_stream
@@ -133,7 +128,6 @@ class StreamUtil
 		when ObjType::OBJECTARRAY
 			obj = []
 			len =  read_int32
-			@log.debug("obj array len = "+len.to_s)
 			len.times do
 			  obj << read_from_stream
 		  end
@@ -177,14 +171,42 @@ class StreamUtil
 			print "unknow type =" + obj.inspect
 		end
 	end
-	
+
 end
 
-if _DEBUG
-  o = [{:name => "222", :fuck => 111 },
-      {:name => "1111", :fuck => 333 }]
-  in_o = StreamUtil.new("/tmp/APP.INF")
-  #in_o.write_to_stream (o)
-  obj = in_o.read_from_stream
-  puts obj.inspect
+
+
+class CommResponse
+    def initialize(code,obj)
+      @code = code
+      @data = obj
+      @is_compress = 0
+      @is_encrypt = 0
+    end
+
+    def out
+      data = ''
+      io = StringIO.new(data)
+      stream_util = StreamUtil.new(io)
+      stream_util.write_byte @is_compress
+      stream_util.write_byte @is_encrypt
+      stream_util.write_int32 @code
+
+      stream_util.write_to_stream @data
+
+      data
+    end
+  end
+
+
+if defined? _DEBUG
+  File.open("g:\\temp\\1.txt","rb") do |f|
+    in_o = StreamUtil.new(f)
+    #in_o.write_to_stream (o)
+    in_o.read_byte
+    in_o.read_byte
+    obj = in_o.read_from_stream
+    obj = in_o.read_from_stream
+    puts obj.inspect
+  end
 end
