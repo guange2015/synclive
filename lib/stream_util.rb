@@ -95,7 +95,7 @@ class StreamUtil
 	
 	def read_from_stream()		
 		c = read_byte
-    puts "c = "+c.to_s
+    #puts "c = "+c.to_s
 		case c
 		when ObjType::NULL			
 			return nil
@@ -139,7 +139,7 @@ class StreamUtil
 		when ObjType::POINT
 			return read_int32
 		else
-			print c
+			#print c
 		end
 	end
 	
