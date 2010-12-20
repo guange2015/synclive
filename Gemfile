@@ -23,8 +23,13 @@ group :development do
   gem 'ruby-debug-base19', '0.11.24'
   gem 'ruby-debug-ide19','0.4.12'
   gem 'ruby-debug-ide','0.4.16'
+  gem 'rspec-rails', '2.3.1'
 end
 
+group :test do
+  gem 'rspec', '2.3.0'
+  gem 'webrat', '0.7.1'
+end
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
