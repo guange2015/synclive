@@ -1,69 +1,69 @@
  
 
-ÎÒÖ»ÓĞwindowsºÍMacOS,ËùÒÔÖ»ÄÜĞ´ÕâÁ½¸ö°æ±¾µÄ°²×°Çé¿ö£¬ÒÔÏÂËùÓĞ²½Öè¾ù±£Ö¤ÔÚÊµ»úÉÏ²âÊÔÍ¨¹ı¡£
+æˆ‘åªæœ‰windowså’ŒMacOS,æ‰€ä»¥åªèƒ½å†™è¿™ä¸¤ä¸ªç‰ˆæœ¬çš„å®‰è£…æƒ…å†µï¼Œä»¥ä¸‹æ‰€æœ‰æ­¥éª¤å‡ä¿è¯åœ¨å®æœºä¸Šæµ‹è¯•é€šè¿‡ã€‚
 
  
 
-windows °æ±¾:
+windows ç‰ˆæœ¬:
 
-1. ruby °²×°,°æ±¾1.9.2-p0
+1. ruby å®‰è£…,ç‰ˆæœ¬1.9.2-p0
 
-ÏÂÔØµØÖ·£º
+ä¸‹è½½åœ°å€ï¼š
 
 http://rubyforge.org/frs/download.php/72170/rubyinstaller-1.9.2-p0.exe
 
-ÒıÓÃÒ³:
+å¼•ç”¨é¡µ:
 
 http://rubyinstaller.org/downloads/
 
  
 
-2. rails °²×°
+2. rails å®‰è£…
 
-gem install rails ¨Cno-rdoc ---no-ri
+gem install rails â€“no-rdoc ---no-ri
 
-ÎÒµÄ»úÆ÷°²×°ÍêºóÎªrails3.0.3£¬ÒÔºó¿Ï¶¨»á±ä
+æˆ‘çš„æœºå™¨å®‰è£…å®Œåä¸ºrails3.0.3ï¼Œä»¥åè‚¯å®šä¼šå˜
 
  
 
-3. ruby-debug°²×°£¬×îÎªÂé·³£º
+3. ruby-debugå®‰è£…ï¼Œæœ€ä¸ºéº»çƒ¦ï¼š
 
-a. ×°ºÃdevkit,Õâ¸öÖ»ÒªÓÃ7zÂÌÉ«3.4.5r3µÄ°æ±¾¼´¿ÉÒÔ£¬²»ĞèÒª×îĞÂµÄ4.5.1µÄexe°æ£¬ÎÒÏÂÁËÁ½ÌìÃ»ÏÂÔØµÃÏÂÀ´¡£
+a. è£…å¥½devkit,è¿™ä¸ªåªè¦ç”¨7zç»¿è‰²3.4.5r3çš„ç‰ˆæœ¬å³å¯ä»¥ï¼Œä¸éœ€è¦æœ€æ–°çš„4.5.1çš„exeç‰ˆï¼Œæˆ‘ä¸‹äº†ä¸¤å¤©æ²¡ä¸‹è½½å¾—ä¸‹æ¥ã€‚
 
-ÏÂÔØµØÖ·£º
+ä¸‹è½½åœ°å€ï¼š
 
 http://rubyforge.org/frs/download.php/66888/devkit-3.4.5r3-20091110.7z
 
-ÒıÓÃÒ³:
+å¼•ç”¨é¡µ:
 
 http://rubyforge.org/frs/?group_id=167
 
-½âÑ¹µ½ruby°²×°Ä¿Â¼¼´¿É.
+è§£å‹åˆ°rubyå®‰è£…ç›®å½•å³å¯.
 
  
 
-b. ÏÂÔØruby192Ô´Âë
+b. ä¸‹è½½ruby192æºç 
 
 ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
-½âÑ¹µ½c:/Ruby192/srcÏÂ¼´¿É,Èçvm_core.hµÄÄ¿Â¼Îªc:\Ruby192\src\vm_core.h
+è§£å‹åˆ°c:/Ruby192/srcä¸‹å³å¯,å¦‚vm_core.hçš„ç›®å½•ä¸ºc:\Ruby192\src\vm_core.h
 
  
 
-c.ÃüÁîĞĞ°²×°ruby-debug
+c.å‘½ä»¤è¡Œå®‰è£…ruby-debug
 
-×¢ÒâÃüÁî£¬±ğ¸ã´íÁË.
+æ³¨æ„å‘½ä»¤ï¼Œåˆ«æé”™äº†.
 
 set PATH=c:/Ruby192/bin
 
 gem install ruby-debug19 -- --with-ruby-include=c:/Ruby192/src
 
-ÒÔÉÏ²½ÖèÎÒ²âÊÔ¹ıÁË£¬»¨ÁËÒ»¸öÉÏÎçµÄÊ±¼ä£¬Ö÷ÒªÊÇÏÂ4.5.1°æµÄdevkitÏÂÔØ²»¶¯,vpn,´úÀí£¬µçĞÅ£¬ÌúÍ¨µÄÍøÂç¸çÊÔ±éÁË£¬¶¼ÏÂÔØ²»À´¡£
+ä»¥ä¸Šæ­¥éª¤æˆ‘æµ‹è¯•è¿‡äº†ï¼ŒèŠ±äº†ä¸€ä¸ªä¸Šåˆçš„æ—¶é—´ï¼Œä¸»è¦æ˜¯ä¸‹4.5.1ç‰ˆçš„devkitä¸‹è½½ä¸åŠ¨,vpn,ä»£ç†ï¼Œç”µä¿¡ï¼Œé“é€šçš„ç½‘ç»œå“¥è¯•éäº†ï¼Œéƒ½ä¸‹è½½ä¸æ¥ã€‚
 
- ²Î¿¼ÍøÖ·£º https://github.com/mark-moseley/ruby-debug/wiki/Installation%3A-command-line-version
+ å‚è€ƒç½‘å€ï¼š https://github.com/mark-moseley/ruby-debug/wiki/Installation%3A-command-line-version
 
 
 
-mac°æ±¾:
+macç‰ˆæœ¬:
 
-1. rvm °²×°
+1. rvm å®‰è£…
