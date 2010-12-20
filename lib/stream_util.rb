@@ -67,7 +67,7 @@ class StreamUtil
 	def read_utf
 		len = read_int16
 		s = read_bytes(len)
-		s = s.encode('GBK','UTF-8')
+		#s = s.encode('GBK','UTF-8')
 		return s
 	end
 	
