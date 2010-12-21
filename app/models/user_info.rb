@@ -1,16 +1,16 @@
 class UserInfo < ActiveRecord::Base
   
   def self.create_by_sim_card_id(sim_card_id)
-    begin
     user_info = self.find_by_sim_card_id(sim_card_id)
-    if not user_info.phone.nil?
-      return 2
-    elsif not user_info.id.nil?
-        return 1
-    end
-    rescue ActiveRecord::RecordNotFound
+    unless user_info
       self.create(:sim_card_id => sim_card_id)
+      return 0
+    else
+      if not user_info.phone.empty?
+        return 2
+      elsif not user_info.id.nil?
+          return 1
+      end
     end
-    return 0
   end
 end
