@@ -143,23 +143,24 @@ class StreamUtil
 		end
 	end
 	
-	def write_to_stream(obj)		
-		if obj.nil?		
+	def write_to_stream(obj)
+	  case obj		
+		when nil?		
 		  write_byte ObjType::NULL
-		elsif obj.kind_of? Fixnum
+		when Fixnum
 		  write_byte ObjType::INT
 		  write_int32 obj
-	  elsif obj.kind_of? String
+	  when String
 		  write_byte ObjType::STRING
 			write_utf obj
-		elsif obj.kind_of? Array
+		when Array
 		  write_byte ObjType::OBJECTARRAY
 			len =  obj.size
 			write_int32 len
 			len.times do |i|
 			  write_to_stream obj[i]
 		  end
-		elsif obj.kind_of? Hash
+		when Hash
 		  write_byte ObjType::HASHTABLE
 			len = obj.length
 			write_int32 len
@@ -168,7 +169,7 @@ class StreamUtil
 				write_to_stream value
 			end
 		else
-			print "unknow type =" + obj.inspect
+			puts "unknow type =" + obj.inspect
 		end
 	end
 
@@ -197,16 +198,3 @@ class CommResponse
       data
     end
   end
-
-
-if defined? _DEBUG
-  File.open("g:\\temp\\1.txt","rb") do |f|
-    in_o = StreamUtil.new(f)
-    #in_o.write_to_stream (o)
-    in_o.read_byte
-    in_o.read_byte
-    obj = in_o.read_from_stream
-    obj = in_o.read_from_stream
-    puts obj.inspect
-  end
-end
