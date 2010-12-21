@@ -1,7 +1,4 @@
 class UserInfo < ActiveRecord::Base
-
-  attr_accessible :id
-  validates_presence_of :id
   
   def self.create_by_sim_card_id(sim_card_id)
     begin

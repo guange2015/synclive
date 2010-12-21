@@ -5,7 +5,7 @@ class SignInfo < ActiveRecord::Base
 
   def self.modify_sign_info(sim_card_id, content)
 
-    user_info = UserInfo.find_all_by_sim_card_id(sim_card_id)
+    user_info = UserInfo.find_by_sim_card_id(sim_card_id)
     if user_info.nil?
       return 1
     end
