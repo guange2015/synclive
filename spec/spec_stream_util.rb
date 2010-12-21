@@ -1,11 +1,12 @@
 require 'spec_helper'
 require 'stream_util'
 
+
 describe 'obj <=> java' do
   
   before(:each) do
     @o = [{"name" => "111"},{"key" => 111}]
-    @file_name = "/tmp/1.txt"
+    @file_name = File.expand_path('../../tmp/1.txt', __FILE__)
   end
   
   it 'should be obj=>stream' do

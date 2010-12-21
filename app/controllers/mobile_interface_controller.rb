@@ -39,7 +39,7 @@ class MobileInterfaceController < ApplicationController
 
   def uu_register(obj)
     logger.info("uu_register")
-    UserInfo.create_by_id(obj["simcard"])
+    UserInfo.create_by_sim_card_id(obj["simcard"])
   end
   
   def make_return(code)

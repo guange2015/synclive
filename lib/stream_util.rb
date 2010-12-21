@@ -139,7 +139,7 @@ class StreamUtil
 		when ObjType::POINT
 			return read_int32
 		else
-			print c
+			#print c
 		end
 	end
 	
