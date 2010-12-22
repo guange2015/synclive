@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  id: MyString
-  phone: MyString
-
-two:
-  id: MyString
-  phone: MyString

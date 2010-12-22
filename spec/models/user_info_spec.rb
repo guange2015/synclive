@@ -6,6 +6,7 @@ describe UserInfo do
       UserInfo.create ({:sim_card_id => "111111", :phone =>"11111111"})
       UserInfo.create ({:sim_card_id => "222222", :phone =>""})
   end
+
   describe "add user sim card id already exits" do
     it "should be not return zero" do
       UserInfo.create_by_sim_card_id("111111").should_not == 0
