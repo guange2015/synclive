@@ -62,6 +62,10 @@ gem install ruby-debug19 -- --with-ruby-include=c:/Ruby192/src
 
  参考网址： https://github.com/mark-moseley/ruby-debug/wiki/Installation%3A-command-line-version
 
+windows 中有时会报这个错误:
+`bin_path’: can’t find executable rake for rake-0.8.7
+删掉C:\Ruby192\lib\ruby\gems\1.9.1\specifications\rake.gemspec就可以了
+
 Linux 版本：
 ubuntn9.04
 1. 安装rvm (建议去查看官网的最新的文档)
