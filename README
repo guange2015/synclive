@@ -1,6 +1,6 @@
  
 
-我只有windows和MacOS,所以只能写这两个版本的安装情况，以下所有步骤均保证在实机上测试通过。
+正好哥windows、MacOS、Linux都有,所以这三个版本的安装情况都有记录，以下所有步骤均保证在实机上测试通过。
 
  
 
@@ -62,8 +62,39 @@ gem install ruby-debug19 -- --with-ruby-include=c:/Ruby192/src
 
  参考网址： https://github.com/mark-moseley/ruby-debug/wiki/Installation%3A-command-line-version
 
+Linux 版本：
+ubuntn9.04
+1. 安装rvm (建议去查看官网的最新的文档)
+sudo apt-get install git-core curl
+bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+
+2. 安装ruby1.9.2
+rvm install 1.9.2
+中途如果gem update 报错，那就是没装zlib
+sudo apt-get install zlib1g-dev
+cd ~/.rvm/src/ruby-1.9.2-p0/ext/zlib
+ruby ./extconf.rb
+make
+make install
+我发现ext中有很多模块，安装的时候如果没装上不要紧，后来补就可以了，可以用irb的require来测试
+
+
+3. 后面安装gem时，如果发现缺少openssl模块，说明这个没装好
+$ rvm package install openssl
+$ rvm remove 1.9.1
+$ rvm install 1.9.1 -C --with-openssl-dir=/usr/local/rvm/usr
+
+上面这个是archlinux wiki给的答案
+我想应该是可以的，不过有了上次装zlib的经验，我就没这么笨了，remove再install很慢的，而且说不定会对我装好的gem有影响。
+直接这样
+rvm package install openssl
+cd ~/.rvm/src/ruby-1.9.2-p0/ext/openssl
+ruby ./extconf.rb --with-openssl-dir=/home/你的用户名/.rvm/usr
+make
+make install
+这时再用irb的require 'openssl'试一把，没问题了。还有上面那个家目录，千万别写~/,要写绝对的，不然会死的。
 
 
 mac版本:
 
-1. rvm 安装
+发现装了xcode之后，直接像linux一样装就是，没那么多麻烦事。

@@ -173,9 +173,54 @@ class StreamUtil
 		end
 	end
 
+  def self.read_object(data)
+    io           = StringIO.new(data)
+    stream_util  = StreamUtil.new(io)
+    is_compress  = stream_util.read_byte
+    is_encrypt   = stream_util.read_byte
+
+    service_name = stream_util.read_from_stream
+    obj = stream_util.read_from_stream
+    io.close
+    obj
+  end
+
+  def self.read_return_object(data)
+    io           = StringIO.new(data)
+    stream_util  = StreamUtil.new(io)
+    is_compress  = stream_util.read_byte
+    is_encrypt   = stream_util.read_byte
+
+    code = stream_util.read_int32
+    obj = stream_util.read_from_stream
+    io.close
+    obj
+  end
+
 end
 
 
+class CommRequest
+  def initialize(service_name,data)
+      @service_name = service_name
+      @data = data
+      @is_compress = 0
+      @is_encrypt = 0
+  end
+
+  def out
+    data = ''
+    io = StringIO.new(data)
+    stream_util = StreamUtil.new(io)
+    stream_util.write_byte @is_compress
+    stream_util.write_byte @is_encrypt
+
+    stream_util.write_to_stream @service_name
+    stream_util.write_to_stream @data
+
+    data
+  end
+end
 
 class CommResponse
     def initialize(code,obj)
