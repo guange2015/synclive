@@ -66,6 +66,12 @@ windows 中有时会报这个错误:
 `bin_path’: can’t find executable rake for rake-0.8.7
 删掉C:\Ruby192\lib\ruby\gems\1.9.1\specifications\rake.gemspec就可以了
 
+安装spork，这个就累了
+参照wiki上装好后，rspec --drb spec是硬是说找不到spork, 将其加入到Gemfile之后好了。
+
+讨厌的ANSION提示
+老提示哥要装ansion,我其实装了，但还需要ansion -i,哎在win上用linux那套还真不习惯。
+
 Linux 版本：
 ubuntn9.04
 1. 安装rvm (建议去查看官网的最新的文档)

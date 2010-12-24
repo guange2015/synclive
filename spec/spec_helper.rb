@@ -1,10 +1,5 @@
 require 'rubygems'
-puts '.....................................................................'
-begin
-	require '/home/xiao/.rvm/gems/ruby-1.9.2-p0@rails3/gems/spork-0.8.4/lib/spork'
-rescue Exception=>e
-	require 'd:\Ruby192\lib\ruby\gems\1.9.1\gems\spork-0.8.4\lib\spork.rb'
-end
+require 'spork'
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However, 

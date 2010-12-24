@@ -29,6 +29,7 @@ end
 group :test do
   gem 'rspec', '2.3.0'
   gem 'webrat', '0.7.1'
+  gem 'spork', '0.8.4'
   #gem 'capybara', '0.4.0'
 end
 # Bundle the extra gems:
