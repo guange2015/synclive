@@ -1,4 +1,6 @@
 class ContactInfo < ActiveRecord::Base
+  belongs_to :user_info
+
   def add_contact_list(sim_card_id, contact_list)
     user_info = UserInfo.find_by_sim_card_id sim_card_id
     unless user_info
