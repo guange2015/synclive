@@ -40,6 +40,13 @@ Spork.prefork do
 end
 
 Spork.each_run do
+# Force-load all the app files.
+  # This is because (as of this writing) changes to the app/ files
+  # aren't loaded when running autotest with spork.
+  # We could set config.cache_classes to false in test.rb,
+  # but that breaks integration testing.
+  #Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+  
 end
 
 

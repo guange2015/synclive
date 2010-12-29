@@ -17,9 +17,9 @@ describe MobileInterfaceController do
 
 
   before(:each) do
-    @sim_card_id  = "1"*16
-    @sim_card_id2 = "2"*16
-  end
+    @sim_card_id  = "1"*15
+    @sim_card_id2 = "2"*15
+  end 
 
   def make_post_data(data)
     CommRequest.new("uu_service",

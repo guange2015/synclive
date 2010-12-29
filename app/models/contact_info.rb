@@ -6,15 +6,16 @@ class ContactInfo < ActiveRecord::Base
     unless user_info
       1
     else
-      contact_list.each do |number,name|
-      	user = UserInfo.find_by_phone number
-        ContactInfo.create({:user_info => user_info,
-            :name => name,
-            :phone => number,
-            :my_user_id => user ? user.id : ""
-        })
-      end
+      contact_list.each do |number, name|
+        user = UserInfo.find_by_phone number
+        ContactInfo.create(:user_info => user_info,
+                           :name       => name,
+                           :phone => number,
+                           :my_user_id => user ? user.id : "")
+      end      
       0
     end
+
   end
+  
 end

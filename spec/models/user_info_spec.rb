@@ -3,8 +3,8 @@ require 'spec_helper'
 describe UserInfo do
 
   before(:each) do
-    @sim_card_id = "1"*16
-    @sim_card_id2 = "2"*16
+    @sim_card_id = "1"*15
+    @sim_card_id2 = "2"*15
     UserInfo.create ({:sim_card_id => @sim_card_id, :phone =>"11111111"})
     UserInfo.create ({:sim_card_id => @sim_card_id2, :phone =>""})
   end

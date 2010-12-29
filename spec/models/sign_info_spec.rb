@@ -4,8 +4,8 @@ describe SignInfo do
 
   describe 'add sign info' do
     before(:each) do
-      @sim_card_id = "1"*16
-      @sim_card_id2 = "2"*16
+      @sim_card_id = "1"*15
+      @sim_card_id2 = "2"*15
       @test_user = UserInfo.create(:phone => '15812345678', :sim_card_id => @sim_card_id)
       @test_sign = SignInfo.new
     end
