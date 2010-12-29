@@ -12,7 +12,9 @@ class SignInfo < ActiveRecord::Base
 
     update_all(:status=>0, :user_info_id => user_info.id)
 
-    sign_info = new({:user_info => user_info,:content => content, :status => 1})
+    sign_info = new({:user_info => user_info,
+    				 :content => content, 
+    				 :status => 1})
     return 0 if sign_info.save
     return 2
   end

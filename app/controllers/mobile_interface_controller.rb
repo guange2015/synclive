@@ -51,19 +51,19 @@ class MobileInterfaceController < ApplicationController
                ContactInfo.add_contact_list(obj["sim_card_id"],
                                             obj["contact_list"])
              end
-      {"status" => code}
+      {"status" => code.to_s}
     end
 
     def uu_refresh_contacts_sign_info(obj)
       user = UserInfo.find_by_sim_card_id(obj["sim_card_id"])
       l    = user.get_contacts_sign_info()
-      {"status" => 0, "contacts_sign_info"=>l}
+      {"status" => "0", "contacts_sign_info"=>l}
     end
 
     def uu_modify_sign_info(obj)
       logger.info("uu_modify_sign_info")
       code = SignInfo.modify_sign_info(obj["sim_card_id"], obj["content"])
-      {:status => code}
+      {:status => code.to_s}
     end
 
     def uu_register(obj)
@@ -77,7 +77,7 @@ class MobileInterfaceController < ApplicationController
       {}
     end
 
-      {:status => code}.merge out_obj
+      {:status => code.to_s}.merge out_obj
     end
 
     def make_return(obj)

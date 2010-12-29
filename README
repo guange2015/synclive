@@ -75,6 +75,9 @@ windows 中有时会报这个错误:
 Linux 版本：
 ubuntn9.04
 1. 安装rvm (建议去查看官网的最新的文档)
+如果是新装,装个开发环境吧。
+sudo apt-get install build-essential autoconf automake1.9 cvs subversion
+
 sudo apt-get install git-core curl
 bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
 
@@ -104,7 +107,12 @@ make
 make install
 这时再用irb的require 'openssl'试一把，没问题了。还有上面那个家目录，千万别写~/,要写绝对的，不然会死的。
 
+nokogiri安装，装好下面几个库
+sudo apt-get install libxml2 libxml2-dev libxslt1-dev
 
 mac版本:
 
 发现装了xcode之后，直接像linux一样装就是，没那么多麻烦事。
+
+
+ssss搜索sss

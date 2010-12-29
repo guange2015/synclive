@@ -1,7 +1,7 @@
 class UserInfo < ActiveRecord::Base
   has_many :contact_infos
   has_many :sign_infos
-  validates_length_of :sim_card_id, :is => 16
+  validates_length_of :sim_card_id, :is => 15
 
   def self.create_by_sim_card_id(sim_card_id)
     user_info = self.find_by_sim_card_id(sim_card_id)
@@ -23,7 +23,10 @@ class UserInfo < ActiveRecord::Base
       unless contact.my_user_id.empty?
         user = UserInfo.find(contact.my_user_id)
         if user and user.active_sign_info
-          l << [user.id, user.phone, user.active_sign_info.content ]  
+          l << {"ID" => user.id, 
+          		"PHONE" => user.phone, 
+          		"NAME"  => user.name,
+          		"CONTENT" => user.active_sign_info.content } 
         end
       end
     end
