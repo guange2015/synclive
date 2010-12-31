@@ -20,10 +20,12 @@ describe ContactInfo do
     end
 
     it "should return 0 and update my user id when param right" do
-      UserInfo.create ({:sim_card_id => @sim_card_id3, :phone =>@phone})
+      user = UserInfo.create ({:sim_card_id => @sim_card_id3, :phone =>@phone})
       ContactInfo.add_contact_list(@sim_card_id,
                 {@phone => "test user"}).should == 0
-      ContactInfo.where(:my_user_id => @sim_card_id3,
+      puts ContactInfo.all.inspect
+      puts UserInfo.all.inspect
+      ContactInfo.where(:my_user_id => user.id,
                         :phone => @phone).first.should_not be_nil
     end
     

@@ -7,11 +7,9 @@ class ContactInfo < ActiveRecord::Base
       1
     else
       contact_list.each do |number, name|
-        user = UserInfo.find_by_phone number
-        ContactInfo.create(:user_info => user_info,
+        contact = ContactInfo.create!(:user_info => user_info,
                            :name       => name,
-                           :phone => number,
-                           :my_user_id => user ? user.id : "")
+                           :phone => number)
       end      
       0
     end
